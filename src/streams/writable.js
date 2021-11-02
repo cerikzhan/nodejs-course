@@ -1,7 +1,10 @@
 const { Writable } = require('stream');
 
 class WritableStream extends Writable {
-    constructor(opt) {
-        super(opt);
+    _write(chunk, encode, callback) {
+        process.stdout.write(chunk);
+        callback();
     }
 }
+
+module.exports = WritableStream;
