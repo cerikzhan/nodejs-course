@@ -12,7 +12,23 @@ class RequiredOptionError extends Error {
     }
 }
 
+class ValidationError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'ValidationError';
+    }
+}
+
+class FileNotExistsError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'FileNotExistsError';
+    }
+}
+
 module.exports = {
     DuplicationError,
     RequiredOptionError,
+    ValidationError,
+    FileNotExistsError,
 }

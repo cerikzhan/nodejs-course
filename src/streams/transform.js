@@ -6,11 +6,15 @@ const upperAlphabet = String.fromCharCode(...Array(91).keys()).slice(65).split('
 const lowerAlphabet = upperAlphabet.map((letter) => letter.toUpperCase());
 
 class TransformStream extends Transform {
-    constructor(code) {
+    constructor(config) {
         super();
-        this.code = code;
+        this.config = config;
     }
-    _transform() {
 
+    _transform(chunk, encode, callback) {
+        const result = `*${chunk}`;
+        callback(null, result);
     }
 }
+
+module.exports = TransformStream;
