@@ -10,4 +10,8 @@ class Encryption {
 
 }
 
+function ciphering(config) {
+    
+}
+
 module.exports = Encryption;

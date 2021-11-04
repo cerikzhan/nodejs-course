@@ -14,6 +14,7 @@ async function main() {
     }
 
     const options = program.opts();
+    console.log(options);
 
     await streamify(options.config, options.input, options.output);
 }

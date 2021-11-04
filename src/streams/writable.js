@@ -5,6 +5,7 @@ class WritableStream extends Writable {
         super();
         this.writePath = path;
     }
+    
     _write(chunk, encode, callback) {
         process.stdout.write(chunk);
         callback();

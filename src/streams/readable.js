@@ -7,9 +7,13 @@ class ReadableStream extends Readable {
     }
 
     _read() {
-        process.stdin.on('data', (data) => {
-            this.push(data);
-        })
+        if (this.readPath) {
+            
+        } else {
+            process.stdin.on('data', (data) => {
+                this.push(data);
+            })
+        }
     }
 }
 

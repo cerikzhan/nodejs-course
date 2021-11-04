@@ -19,7 +19,7 @@ class Command {
                 case '-c':
                 case '--config':
                     if (this.options.config) throw new DuplicationError('-c, --config options duplicated');
-                    this.options.config = configValidation(operations[valueIndex]) && operations[valueIndex];
+                    this.options.config = configValidation(operations[valueIndex]);
                     break;
                 case '-i':
                 case '--input':
