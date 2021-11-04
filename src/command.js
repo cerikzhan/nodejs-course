@@ -5,9 +5,9 @@ const pathValidation = require('./validations/path-validation');
 class Command {
     constructor() {
         this.options = {
-            config: '',
-            input: '',
-            output: '',
+            config: null,
+            input: null,
+            output: null,
         }
     }
 

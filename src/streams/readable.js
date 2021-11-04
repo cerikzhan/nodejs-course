@@ -1,18 +1,43 @@
 const { Readable } = require('stream');
+const fs = require('fs');
 
 class ReadableStream extends Readable {
     constructor(path) {
         super();
         this.readPath = path;
+        this.fd = null;
     }
 
-    _read() {
-        if (this.readPath) {
-            
+    _construct(callback) {
+        fs.open(this.readPath, (err, fd) => {
+            if (err) {
+                callback(err);
+            } else {
+                this.fd = fd;
+                callback();
+            }
+        })
+    }
+
+    _read(n) {
+        const buffer = Buffer.alloc(n);
+        fs.read(this.fd, buffer, 0, n, null, (err, bytesRead) => {
+            if (err) {
+                this.destroy(err);
+            } else {
+                this.push(bytesRead > 0 ? buffer.slice(0, bytesRead) : null);
+            }
+        })
+        // process.stdin.on('data', (chunk) => {
+        //     this.push(chunk);
+        // });
+    }
+
+    _destroy(err, callback) {
+        if (this.fd) {
+            fs.close(this.fd, (er) => callback(er || err));
         } else {
-            process.stdin.on('data', (data) => {
-                this.push(data);
-            })
+            callback(err);
         }
     }
 }
