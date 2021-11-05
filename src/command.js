@@ -1,4 +1,4 @@
-const { RequiredOptionError, DuplicationError } = require('./errors');
+const { RequiredOptionError, DuplicationError, ValidationError } = require('./errors');
 const configValidation = require('./validations/config-validation');
 const pathValidation = require('./validations/path-validation');
 
@@ -31,6 +31,8 @@ class Command {
                     if (this.options.output) throw new DuplicationError('-o, --output options duplicated');
                     this.options.output = pathValidation(operations[valueIndex]);
                     break;
+                default:
+                    throw new ValidationError(`Key "${operations[i]}" does not exists in program`);
             }
         }
 

@@ -27,10 +27,7 @@ class ReadableStream extends Readable {
             } else {
                 this.push(bytesRead > 0 ? buffer.slice(0, bytesRead) : null);
             }
-        })
-        // process.stdin.on('data', (chunk) => {
-        //     this.push(chunk);
-        // });
+        });
     }
 
     _destroy(err, callback) {

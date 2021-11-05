@@ -1,15 +1,25 @@
-const upperAlphabetEnd = String.fromCharCode(...Array(91).keys()).slice(65).split('');
-const lowerAlphabetEnd = String.fromCharCode(...Array(123).keys()).slice(97).split('');
-
 const UPPER_START = 65;
 const LOWER_START = 97;
 const ALPHABET_LENGTH = 26;
 
-function caesarCipher(str, shift = 1) {
+function shiftCipher(str, code) {
     const result = [];
 
-    if (shift < 0) {
-        return caesarCipher(str, shift + 26);
+    let shift;
+
+    switch(code) {
+        case 'C1':
+            shift = 1;
+            break;
+        case 'C0':
+            shift = 26 - 1;
+            break;
+        case 'R1':
+            shift = 8;
+            break;
+        case 'R0':
+            shift = 26 - 8;
+            break;
     }
 
     for (let i = 0; i < str.length; i++) {
@@ -21,7 +31,7 @@ function caesarCipher(str, shift = 1) {
         } else if (code >= LOWER_START && code < (LOWER_START + ALPHABET_LENGTH)) {
             letter = String.fromCharCode(((code - LOWER_START + shift) % ALPHABET_LENGTH) + LOWER_START);
         } else {
-            letter = String.fromCharCode(code);
+            letter = str[i];
         }
 
         result.push(letter);
@@ -30,4 +40,4 @@ function caesarCipher(str, shift = 1) {
     return result.join('');
 }
 
-module.exports = caesarCipher;
+module.exports = shiftCipher;

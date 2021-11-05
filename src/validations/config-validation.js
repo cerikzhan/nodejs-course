@@ -5,7 +5,7 @@ function configValidation(str) {
     const arr = str.split('-');
 
     for(let i = 0; i < arr.length; i++) {
-        if (!VALID_CODES.includes(arr[i])) throw new ValidationError(`"${arr[i]}" not valid ciphering code`); 
+        if (!VALID_CODES.includes(arr[i])) throw new ValidationError(`"${arr[i]}" not valid ciphering code`);
     }
 
     return arr;

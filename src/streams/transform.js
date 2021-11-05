@@ -1,5 +1,5 @@
 const { Transform } = require('stream');
-const caesarCipher = require('../ciphering/caesar');
+const shiftCipher = require('../ciphering/caesar');
 
 class TransformStream extends Transform {
     constructor(config) {
@@ -8,8 +8,12 @@ class TransformStream extends Transform {
     }
 
     _transform(chunk, encode, callback) {
-        const shift = this.config[0] === 'C1' ? 1 : -1;
-        const res = caesarCipher(chunk.toString(), shift);
+        let res;
+        for (let i = 0; i < this.config.length; i++) {
+            if (i === 0) res = chunk.toString();
+            res = shiftCipher(res, this.config[i]);
+        }
+        
         callback(null, res);
     }
 }
