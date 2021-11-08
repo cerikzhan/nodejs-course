@@ -9,7 +9,7 @@ class WritableStream extends Writable {
     }
 
     _construct(callback) {
-        fs.open(this.writePath, (err, fd) => {
+        fs.open(this.writePath, 'a', (err, fd) => {
             if (err) {
                 callback(err);
             } else {
