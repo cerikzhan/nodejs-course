@@ -1,8 +1,5 @@
-const BaseClass = require('./_base');
-
-class Cipher extends BaseClass {
+class Cipher {
     constructor() {
-        super();
         this.upper_letters_start = 65;
         this.lower_letters_start = 97;
         this.alphabet_length = 26;
@@ -27,6 +24,14 @@ class Cipher extends BaseClass {
         }
 
         return result.join('');
+    }
+
+    _upperReformat(code) {
+        throw new Error('Method "_upperReformat()" must be implemented.');
+    }
+
+    _lowerReformat(code) {
+        throw new Error('Method "_lowerReformat()" must be implemented.');
     }
 }
 

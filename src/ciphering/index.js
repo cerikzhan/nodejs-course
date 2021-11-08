@@ -5,6 +5,7 @@ const ALPHABET_LENGTH = 26;
 
 function ciphering (str, config) {
     let tool;
+    
     switch(config) {
         case 'C1':
             tool = new Shift(1);
@@ -20,6 +21,7 @@ function ciphering (str, config) {
             break;
         case 'A':
             tool = new Atbash();
+            break;
     }
 
     return tool.parse(str);
