@@ -24,12 +24,12 @@ class Command {
                 case '-i':
                 case '--input':
                     if (this.options.input) throw new DuplicationError('-i, --input options duplicated');
-                    this.options.input = pathValidation(operations[valueIndex]);
+                    this.options.input = pathValidation(operations[valueIndex], operations[i]);
                     break;
                 case '-o':
                 case '--output':
                     if (this.options.output) throw new DuplicationError('-o, --output options duplicated');
-                    this.options.output = pathValidation(operations[valueIndex]);
+                    this.options.output = pathValidation(operations[valueIndex], operations[i]);
                     break;
                 default:
                     throw new ValidationError(`Key "${operations[i]}" does not exists in program`);

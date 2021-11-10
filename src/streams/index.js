@@ -1,10 +1,11 @@
 const stream = require('stream');
-const fs = require('fs');
 const { promisify } = require('util');
 const { stdin, stdout } = require('process');
 const ReadableStream = require('./readable');
 const WritableStream = require('./writable');
 const TransformStream = require('./transform');
+
+const EXIT_CODE = 1;
 
 const pipeline = promisify(stream.pipeline);
 
@@ -25,7 +26,7 @@ async function streamify(config, input, output) {
         );
     } catch (err) {
         process.stderr.write(err.message);
-        process.exit(1);
+        process.exit(EXIT_CODE);
     }
 }
 
