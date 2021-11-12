@@ -12,8 +12,8 @@ CLI tool should accept 3 options (short alias and full name):
     - **Y** is flag of encoding or decoding (mandatory for Caesar cipher and ROT-8 cipher and should not be passed Atbash cipher)
         - 1 is for encoding
         - 0 is for decoding
-2. **-i, --input**: **(optional)** a path to input file
-3. **-o, --output**: **(optional)** a path to output file
+2. **-i, --input**: **(optional)** a relative path from "package.json" file to input file
+3. **-o, --output**: **(optional)** a relative path from "package.json" file to output file
 
 Command should start:
 
