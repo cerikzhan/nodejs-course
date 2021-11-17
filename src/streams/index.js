@@ -5,8 +5,6 @@ const ReadableStream = require('./readable');
 const WritableStream = require('./writable');
 const TransformStream = require('./transform');
 
-const EXIT_CODE = 1;
-
 const pipeline = promisify(stream.pipeline);
 
 async function streamify(config, input, output) {
@@ -18,16 +16,11 @@ async function streamify(config, input, output) {
         transform_stream.push(new TransformStream(config[i]));
     }
 
-    try {
-        await pipeline(
-            readable_stream,
-            ...transform_stream,
-            writable_stream,
-        );
-    } catch (err) {
-        process.stderr.write(err.message);
-        process.exit(EXIT_CODE);
-    }
+    await pipeline(
+        readable_stream,
+        ...transform_stream,
+        writable_stream,
+    );
 }
 
 module.exports = streamify;

@@ -1,21 +1,17 @@
 const Command = require('./command');
 const streamify = require('./streams');
 
-const EXIT_CODE = 1;
-
-async function main() {
+function main() {
     const program = new Command();
 
-    try {
-        program.parse(process.argv);
-    } catch(err) {
-        process.stderr.write(err.message);
-        process.exit(EXIT_CODE);
-    }
+    program.parse(process.argv);
 
     const options = program.opts();
 
-    await streamify(options.config, options.input, options.output);
+    streamify(options.config, options.input, options.output)
+        .catch((err) => {
+            throw new Error(err.message);
+        });
 }
 
 module.exports = main;

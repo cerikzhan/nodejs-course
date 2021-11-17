@@ -4,7 +4,8 @@
   "description": "",
   "main": "cipher-cli.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/iamserik/nodejs-course/issues"
   },
-  "homepage": "https://github.com/iamserik/nodejs-course#readme"
+  "homepage": "https://github.com/iamserik/nodejs-course#readme",
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
 }
