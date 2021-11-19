@@ -1,5 +1,5 @@
-const ciphering = require("../../src/ciphering");
-const Cipher = require("../../src/ciphering/cipher");
+const ciphering = require('../../src/ciphering');
+const Cipher = require('../../src/ciphering/cipher');
 
 describe('Shift ciphering', () => {
     test('Should be cipher "abc" to "bcd"', () => {
