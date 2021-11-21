@@ -1,5 +1,5 @@
-const ReadableStream = require('../../src/streams/readable');
 const path = require('path');
+const ReadableStream = require('../../src/streams/readable');
 
 const rootFolder = path.dirname(path.dirname(__dirname));
 
