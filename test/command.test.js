@@ -2,9 +2,7 @@ const Command = require('../src/command');
 const {
     RequiredOptionError,
     DuplicationError,
-    FileNotExistsError,
     ValidationError,
-    PermissionDeniedError,
 } = require('../src/errors');
 
 describe('Command argv tests', () => {
@@ -61,12 +59,6 @@ describe('Command errors test', () => {
         program = null;
     });
 
-    test('Validation error (C1-C1-A-B1 wrong config argument)', () => {
-        expect(() => {
-            program.parse(['node', 'cipher-cli', '--config', 'C1-C1-A-B1']);
-        }).toThrow(ValidationError);
-    });
-
     test('Duplication error (--config, -c)', () => {
         expect(() => {
             program.parse(['node', 'cipher-cli', '--config', 'C1-C1', '-c', 'C0-C0']);
@@ -77,18 +69,6 @@ describe('Command errors test', () => {
         expect(() => {
             program.parse(['node', 'cipher-cli', '-i', './input.txt', '-o', './output.txt']);
         }).toThrow(RequiredOptionError);
-    });
-
-    test('Path validation error (output.json file does not exists)', () => {
-        expect(() => {
-            program.parse(['node', 'cipher-cli', '-c', 'C1-C1', '-o', './output.json']);
-        }).toThrow(FileNotExistsError);
-    });
-
-    test('Permission denied error (output_only_read.txt file for only read)', () => {
-        expect(() => {
-            program.parse(['node', 'cipher-cli', '-c', 'C1-C1', '-o', './output_only_read.txt']);
-        }).toThrow(PermissionDeniedError);
     });
 
     test('Validation error key value does not exists (-d something)', () => {
